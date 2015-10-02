@@ -1,0 +1,60 @@
+int r,g,b;
+float buttonX=100, buttonY=50,buttonW=50, buttonH=40;
+int counter=0;
+
+// screen size
+void setup() {
+  size(640,480);
+//reset();
+}
+ 
+ void reset(){
+  r=40;
+  b=160;
+  g=173;
+
+}
+
+//background color, 
+void draw() {
+ background (r,g,b);
+  button(buttonX, buttonY, buttonW, buttonH );
+  fill(175,0,0);
+  text("Click me!", buttonX+buttonW/38, buttonY+buttonH*2/3 );
+
+
+}
+
+//button 
+void button( float x, float y, float w, float h){
+  fill(222,213,40);
+  rect(x,y,w,h);
+}
+  
+//button function
+void mousePressed() {
+  if ( hit( mouseX,mouseY,100,50,50,40 ) ) {
+    counter= counter+1;
+    if (counter % 2 >0) {
+      r=252;
+      g=0;
+      b=38;
+    } else {
+      reset();
+    }
+  }
+}
+ ///detect hit
+ boolean hit( float x1, float y1, float x2, float y2, float w, float h ) {
+  boolean result;
+ 
+ 
+ 
+ if ( abs(x1-x2) < w && abs(y1-y2)<h ) {
+    result=  true;
+  } else {
+    result=false;
+  }
+
+  return result;
+}
